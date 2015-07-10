@@ -1,0 +1,11 @@
+<?php echo $this->renderDataAsJsonVar('cs_page');?>
+<script type="text/javascript">     
+    if(cs_page.category_names)
+    {
+        crowdstream.events.page();        
+    }
+    else
+    {
+        crowdstream.events.page(<?php echo $this->getPropertyAsJavascriptString('page_name');?>);
+    }    
+</script>
