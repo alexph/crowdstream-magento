@@ -1,6 +1,13 @@
-<?php //echo $this->renderDataAsJsonVar("segment_analytics_orderplaced");?>
+<?php
+$json_to_send = Mage::helper('core')->jsonDecode($this->renderDataAsJsonObject());
+
+$items    = Mage::helper('core')->jsonEncode($json_to_send['items']); 
+$purchase = Mage::helper('core')->jsonEncode($json_to_send['purchase']);
+
+echo $json_to_send;
+?>
 <script type="text/javascript">
-    analytics.track("Completed Order",
-    <?php echo $this->renderDataAsJsonObject('params'); ?>,
-    <?php echo $this->getContextJson(); ?>);
+    crowdstream.events.addItems(<?php echo $items; ?>);
+
+    crowdstream.events.checkout(<?php echo $purchase; ?>);
 </script>    

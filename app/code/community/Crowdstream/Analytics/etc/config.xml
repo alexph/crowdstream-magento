@@ -35,7 +35,7 @@
                     </crowdstream_analyticsmore_scripts_addfrontend>
                 </observers>
             </controller_action_layout_generate_blocks_after>
-            <!-- <customer_logout>
+            <customer_logout>
                 <observers>
                     <crowdstream_analyticsmore_scripts>
                         <type>singleton</type>
@@ -61,7 +61,7 @@
                         <method>removeFromCart</method>
                     </crowdstream_analyticsmore_scripts_remove_item>
                 </observers>
-            </sales_quote_remove_item> -->
+            </sales_quote_remove_item>
             <controller_action_layout_render_before>
                 <observers>
                     <crowdstream_analyticsmore_blocks>
@@ -79,7 +79,7 @@
                         <method>loadedSearch</method>
                     </crowdstream_analyticsmore_search>
                 </observers>
-            </catalogsearch_query_load_after>
+            </catalogsearch_query_load_after> -->
             <customer_register_success>
                 <observers>
                     <crowdstream_analyticsmore_customer_register_success>
@@ -89,7 +89,7 @@
                     </crowdstream_analyticsmore_customer_register_success>
                 </observers>
             </customer_register_success>
-            <controller_action_layout_generate_blocks_after>
+            <!-- <controller_action_layout_generate_blocks_after>
                 <observers>
                     <crowdstream_analyticsmore_category_view_for_share_tab>
                         <type>singleton</type>
@@ -124,7 +124,7 @@
                         <method>categoryViewForFiltering</method>
                     </crowdstream_analyticsmore_category_view_for_filtering>
                 </observers>
-            </controller_action_layout_generate_blocks_after>
+            </controller_action_layout_generate_blocks_after> -->
             <controller_action_layout_generate_blocks_after>
                 <observers>
                     <crowdstream_analyticsmore_category_view_for_welcome>
@@ -132,33 +132,6 @@
                         <class>crowdstream_analytics/observer_admin</class>
                         <method>addExplainationTextToConfigScreen</method>
                     </crowdstream_analyticsmore_category_view_for_welcome>
-                </observers>
-            </controller_action_layout_generate_blocks_after>
-            <catalog_product_collection_apply_limitations_after>
-                <observers>
-                    <crowdstream_analyticsmore_catalog_product_collection_apply_limitations_after>
-                        <type>singleton</type>
-                        <class>crowdstream_analytics/observer_layered</class>
-                        <method>flagIsFiltered</method>
-                    </crowdstream_analyticsmore_catalog_product_collection_apply_limitations_after>
-                </observers>
-            </catalog_product_collection_apply_limitations_after>
-            <controller_action_predispatch_catalog_product_gallery>
-                <observers>
-                    <crowdstream_analyticsmore_catalog_product_collection_apply_limitations_after>
-                        <type>singleton</type>
-                        <class>crowdstream_analytics/observer</class>
-                        <method>productGalleryViewed</method>
-                    </crowdstream_analyticsmore_catalog_product_collection_apply_limitations_after>
-                </observers>
-            </controller_action_predispatch_catalog_product_gallery>
-            <controller_action_layout_generate_blocks_after>
-                <observers>
-                    <crowdstream_analyticsmore_category_view>
-                        <type>singleton</type>
-                        <class>crowdstream_analytics/observer_layered</class>
-                        <method>addLayeredLimitation</method>
-                    </crowdstream_analyticsmore_category_view>
                 </observers>
             </controller_action_layout_generate_blocks_after>
             <controller_action_layout_generate_blocks_after>
@@ -232,7 +205,7 @@
                         <method>wishlistAddProduct</method>
                     </crowdstream_analyticsmore_wishlist_add>
                 </observers>
-            </wishlist_add_product>
+            </wishlist_add_product> -->
             <sales_order_place_after>
                 <observers>
                     <crowdstream_analyticsmore_sales_order_place_after>
@@ -242,7 +215,7 @@
                     </crowdstream_analyticsmore_sales_order_place_after>
                 </observers>
             </sales_order_place_after>
-            <core_block_abstract_to_html_after>
+            <!-- <core_block_abstract_to_html_after>
                 <observers>
                     <crowdstream_analyticsmore_sales_logger>
                         <type>singleton</type>

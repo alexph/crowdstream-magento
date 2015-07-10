@@ -3,6 +3,13 @@ class Crowdstream_Analytics_Model_Controller_Addtocart extends Crowdstream_Analy
 {
     public function getBlock($block)
     {
+        $params = $block->getParams();
+
+        $product = Mage::helper('crowdstream_analytics')
+            ->getNormalizedProductInformation($params['id']);
+
+        $block->setParams($product);
+
         return $block;
     }
 }

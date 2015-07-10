@@ -3,6 +3,13 @@ class Crowdstream_Analytics_Model_Controller_Removefromcart extends Crowdstream_
 {
     public function getBlock($block)
     {
+        $params = $block->getParams();
+
+        $product = Mage::helper('crowdstream_analytics')
+            ->getNormalizedProductInformation($params['id']);
+
+        $block->setParams($product);
+
         return $block;
     }
 }    

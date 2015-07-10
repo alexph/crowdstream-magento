@@ -38,8 +38,8 @@ class Crowdstream_Analytics_Model_Front_Controller
     public function clearDeferredActions()
     {
         Mage::getSingleton('crowdstream_analytics/session')
-        ->setDeferredActions(array())
-        ->setDeferredActionsData(array());
+            ->setDeferredActions(array())
+            ->setDeferredActionsData(array());
         Mage::Log("Cleared Deferred Action");
         return $this;
     }
@@ -47,7 +47,7 @@ class Crowdstream_Analytics_Model_Front_Controller
     public function getDeferredActions()
     {
         $actions = Mage::getSingleton('crowdstream_analytics/session')
-        ->getDeferredActions();
+            ->getDeferredActions();
         $actions = $actions ? $actions : array();
         return $actions;
     }
@@ -72,7 +72,7 @@ class Crowdstream_Analytics_Model_Front_Controller
             $class = 'Crowdstream_Analytics_Model_Controller_' . ucwords($action);
             $controller = new $class;
             $controller->setName($action)
-            ->setData($this->_actionsData[$action]);
+                ->setData($this->_actionsData[$action]);
             $blocks[$action][] = $controller->dispatch();
         }
         
@@ -81,7 +81,7 @@ class Crowdstream_Analytics_Model_Front_Controller
             $class = 'Crowdstream_Analytics_Model_Controller_' . ucwords($action->action);
             $controller = new $class;
             $controller->setName($action->action)
-            ->setData($action->data);
+                ->setData($action->data);
             $blocks[$action->action][] = $controller->dispatch();        
         }
         
@@ -93,9 +93,10 @@ class Crowdstream_Analytics_Model_Front_Controller
         foreach($orders as $order)
         {
             $action = $sort_order[$order];
-            if(!array_key_exists($action, $blocks)) { continue; }             
-            $blocks_ordered[$action] = $blocks[$action];
-            unset($blocks[$action]);
+            if(array_key_exists($action, $blocks)) {
+                $blocks_ordered[$action] = $blocks[$action];
+                unset($blocks[$action]);
+            }
         }
         
         //now any blocks not included in the sort order

@@ -5,20 +5,14 @@ class Crowdstream_Analytics_Model_Controller_Viewedreviews extends Crowdstream_A
     {
         $params = $block->getParams();
         
-        $info   = Mage::getModel('catalog/product_api')
-        ->info($params['id']);
+        $info = Mage::getModel('catalog/product_api')
+            ->info($params['id']);
         
-        $info   = Mage::helper('crowdstream_analytics')
-        ->getNormalizedProductInformation($info); 
-        
-        $want = array('sku', 'price', 'name');
-        foreach($info as $key=>$value)
-        {
-            if(!in_array($key, $want)){continue;}
-            $params[$key] = $value;
-        }
-        
+        $params = Mage::helper('crowdstream_analytics')
+            ->getNormalizedProductInformation($info); 
+                
         $block->setParams($params);
+        
         return $block;
     }
 }

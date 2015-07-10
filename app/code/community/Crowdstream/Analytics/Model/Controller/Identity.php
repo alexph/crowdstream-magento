@@ -17,8 +17,8 @@ class Crowdstream_Analytics_Model_Controller_Identity extends Crowdstream_Analyt
             ->setName($customer->getName())
             ->setFullName($customer->getName())
             ->setEmail($customer->getEmail())        
-            ->setFirst_Name($customer->getFirstname())
-            ->setLast_Name($customer->getLastname());
+            ->setFirstName($customer->getFirstname())
+            ->setLastName($customer->getLastname());
 
         return $block;
     }

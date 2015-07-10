@@ -75,33 +75,34 @@ class Crowdstream_Analytics_Model_Observer
     public function identify($observer)    
     {
         $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();  
-        $front->addDeferredAction('identity');
+        // $front->addDeferredAction('identity');
+        $front->addAction('identity');
     }    
     
     public function loggedOut($observer)    
     {
         $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
         $front->addDeferredAction('customerloggedout', array(
-            'customer'=>$this->_getCustomerData()
+            'customer' => $this->_getCustomerData()
         ));
     }  
     
     public function addToCart($observer)
     {
         $product = $observer->getProduct();
-        $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
-        $front->addDeferredAction('addtocart',
-            array('sku'=>$product->getSku())
-        );    
+        $front   = Crowdstream_Analytics_Model_Front_Controller::getInstance();
+        $front->addDeferredAction('addtocart', array(
+            'params' => array('id' => $product->getIdBySku($product->getSku()))
+        ));
     }
     
     public function removeFromCart($observer)
     {
-        $product    = $observer->getQuoteItem()->getProduct();
-        $front      = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
-        $front->addDeferredAction('removefromcart',
-            array('sku'=>$product->getSku())
-        );    
+        $product = $observer->getQuoteItem()->getProduct();
+        $front   = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
+        $front->addDeferredAction('removefromcart', array(
+            'params' => array('id' => $product->getIdBySku($product->getSku()))
+        ));
     }
     
     public function customerRegistered($observer)
@@ -162,7 +163,7 @@ class Crowdstream_Analytics_Model_Observer
             return;
         }    
         
-        $front      = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
+        $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
         $front->addDeferredAction('viewedproduct',
             array('params'=>$params)
         );          
@@ -196,7 +197,7 @@ class Crowdstream_Analytics_Model_Observer
             return;
         }
         
-        $front      = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
+        $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
         $front->addDeferredAction('viewedreviews',
             array('params'=>$params)
         );  

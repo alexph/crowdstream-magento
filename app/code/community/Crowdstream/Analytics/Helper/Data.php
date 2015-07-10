@@ -73,8 +73,9 @@ class Crowdstream_Analytics_Helper_Data extends Mage_Core_Helper_Abstract
         
         //ensure category names/labels are sent along
         $categories = Mage::getModel('catalog/category')->getCollection()
-        ->addAttributeToSelect('name')
-        ->addFieldToFilter('entity_id', array('in'=>$product['category_ids']));    
+            ->addAttributeToSelect('name')
+            ->addFieldToFilter('entity_id', array('in'=>$product['category_ids']));    
+
         foreach($categories as $category)
         {
             $product['categories'][] = $category->getName();            
@@ -94,9 +95,31 @@ class Crowdstream_Analytics_Helper_Data extends Mage_Core_Helper_Abstract
             $product['id'] = $product['product_id'];
             unset($product['product_id']);
         }
+
+        // Mage::log($product);
         
-        $product = $this->getDataCastAsBooleans($product);
-        return $this->_normalizeDatesToISO8601($product);
+        return array(
+            'item' => $product['name'],
+            'id' => $product['id'],
+            'sku' => $product['sku'],
+            'description' => $product['short_description'],
+            'amount' => $product['price'],
+            'revenue' => $product['revenue'],
+            'category' => implode(' ', $product['categories']),
+            'currency' => Mage::app()->getStore()->getCurrentCurrencyCode(),
+            'channel' => $this->getChannel()
+        );
+    }
+
+    public function getChannel()
+    {
+        $host = parse_url(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB), PHP_URL_HOST);
+
+        if(substr($host, 0, 5) == 'www.') {
+            return substr($host, 5);
+        }
+
+        return $host;
     }
     
     /**
