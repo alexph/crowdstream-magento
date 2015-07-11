@@ -4,7 +4,6 @@ $json_to_send = Mage::helper('core')->jsonDecode($this->renderDataAsJsonObject()
 $items    = Mage::helper('core')->jsonEncode($json_to_send['items']); 
 $purchase = Mage::helper('core')->jsonEncode($json_to_send['purchase']);
 
-echo $json_to_send;
 ?>
 <script type="text/javascript">
     crowdstream.events.addItems(<?php echo $items; ?>);

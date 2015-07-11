@@ -66,6 +66,9 @@ class Crowdstream_Analytics_Helper_Data extends Mage_Core_Helper_Abstract
         
         //calculate revenue, if present 
         $product['id'] = $product['product_id'];
+
+        $product['revenue'] = null;
+
         if(array_key_exists('cost',$product))
         {
             $product['revenue'] = $product['price'] - $product['cost'];
@@ -99,15 +102,15 @@ class Crowdstream_Analytics_Helper_Data extends Mage_Core_Helper_Abstract
         // Mage::log($product);
         
         return array(
-            'item' => $product['name'],
-            'id' => $product['id'],
-            'sku' => $product['sku'],
+            'item'        => $product['name'],
+            'id'          => $product['id'],
+            'sku'         => $product['sku'],
             'description' => $product['short_description'],
-            'amount' => $product['price'],
-            'revenue' => $product['revenue'],
-            'category' => implode(' ', $product['categories']),
-            'currency' => Mage::app()->getStore()->getCurrentCurrencyCode(),
-            'channel' => $this->getChannel()
+            'amount'      => $product['price'],
+            'revenue'     => $product['revenue'],
+            'category'    => implode(' ', $product['categories']),
+            'currency'    => Mage::app()->getStore()->getCurrentCurrencyCode(),
+            'channel'     => $this->getChannel()
         );
     }
 
