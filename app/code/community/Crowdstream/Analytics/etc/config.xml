@@ -71,7 +71,7 @@
                     </crowdstream_analyticsmore_blocks>
                 </observers>
             </controller_action_layout_render_before>
-            <!-- <catalogsearch_query_load_after>
+            <catalogsearch_query_load_after>
                 <observers>
                     <crowdstream_analyticsmore_search>
                         <type>singleton</type>
@@ -79,7 +79,7 @@
                         <method>loadedSearch</method>
                     </crowdstream_analyticsmore_search>
                 </observers>
-            </catalogsearch_query_load_after> -->
+            </catalogsearch_query_load_after>
             <customer_register_success>
                 <observers>
                     <crowdstream_analyticsmore_customer_register_success>
@@ -97,8 +97,8 @@
                         <method>addClickedShareJavascript</method>
                     </crowdstream_analyticsmore_category_view_for_share_tab>
                 </observers>
-            </controller_action_layout_generate_blocks_after>
-            <controller_action_layout_generate_blocks_after>
+            </controller_action_layout_generate_blocks_after>-->
+            <!-- <controller_action_layout_generate_blocks_after>
                 <observers>
                     <crowdstream_analyticsmore_category_view_for_review_tab>
                         <type>singleton</type>
@@ -106,7 +106,7 @@
                         <method>addClickedReviewTabJavascript</method>
                     </crowdstream_analyticsmore_category_view_for_review_tab>
                 </observers>
-            </controller_action_layout_generate_blocks_after>
+            </controller_action_layout_generate_blocks_after> -->
             <controller_action_layout_generate_blocks_after>
                 <observers>
                     <crowdstream_analyticsmore_category_view_for_image_thumbs>
@@ -124,7 +124,7 @@
                         <method>categoryViewForFiltering</method>
                     </crowdstream_analyticsmore_category_view_for_filtering>
                 </observers>
-            </controller_action_layout_generate_blocks_after> -->
+            </controller_action_layout_generate_blocks_after>
             <controller_action_layout_generate_blocks_after>
                 <observers>
                     <crowdstream_analyticsmore_category_view_for_welcome>
@@ -161,7 +161,7 @@
                     </crowdstream_analyticsmore_scripts>
                 </observers>
             </controller_action_layout_generate_blocks_after>
-            <!-- <core_abstract_save_after>
+            <core_abstract_save_after>
                 <observers>
                     <crowdstream_analyticsmore_amasty_fav_save_after>
                         <type>singleton</type>
@@ -170,7 +170,7 @@
                     </crowdstream_analyticsmore_amasty_fav_save_after>
                 </observers>
             </core_abstract_save_after>
-            <review_save_after>
+            <!-- <review_save_after>
                 <observers>
                     <crowdstream_analyticsmore_review_save_after>
                         <type>singleton</type>
@@ -187,7 +187,7 @@
                         <method>reviewedProduct</method>
                     </crowdstream_analyticsmore_review_product_post>
                 </observers>
-            </controller_action_postdispatch_review_product_post>
+            </controller_action_postdispatch_review_product_post> -->
             <newsletter_subscriber_save_after>
                 <observers>
                     <crowdstream_analyticsmore_newsletter_save_after>
@@ -205,7 +205,7 @@
                         <method>wishlistAddProduct</method>
                     </crowdstream_analyticsmore_wishlist_add>
                 </observers>
-            </wishlist_add_product> -->
+            </wishlist_add_product>
             <sales_order_place_after>
                 <observers>
                     <crowdstream_analyticsmore_sales_order_place_after>

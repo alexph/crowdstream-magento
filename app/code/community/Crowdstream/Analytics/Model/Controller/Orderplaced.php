@@ -12,7 +12,7 @@ class Crowdstream_Analytics_Model_Controller_Orderplaced extends Crowdstream_Ana
         $purchase['total']    = (float) $info['grand_total'];
         $purchase['shipping'] = (float) $info['shipping_amount'];
         // $purchase['tax']      = (float) $info['tax_amount'];
-        $purchase['items']    = (int) count($info['items']);
+        $purchase['items']    = 0;
         $purchase['channel']  = Mage::helper('crowdstream_analytics')->getChannel();
         $purchase['currency'] = Mage::app()->getStore()->getCurrentCurrencyCode();
         
@@ -22,7 +22,10 @@ class Crowdstream_Analytics_Model_Controller_Orderplaced extends Crowdstream_Ana
         {
             if(!$item['parent_item_id']) {
                 $tmp = Mage::helper('crowdstream_analytics')->getNormalizedProductInformation($item['product_id']);
-                $tmp['quantity'] = (float) $item['qty_ordered'];
+                $tmp['order_id'] = (int) $params['increment_id'];
+                $tmp['quantity'] = (int) $item['qty_ordered'];
+
+                $purchase['items'] += (int) $item['qty_ordered'];
                 
                 if(array_key_exists('product_options', $item)) {
                     $productOptions = unserialize($item['product_options']);

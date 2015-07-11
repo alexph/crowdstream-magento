@@ -114,15 +114,15 @@ class Crowdstream_Analytics_Model_Observer
         );            
     }
     
-    public function loadedSearch($observer)
-    {
-        $o = $observer->getDataObject();
-        if(!$o){return;}
-        $front      = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
-        $front->addDeferredAction('searchedproducts',
-            array('query'=>$o->getQueryText())
-        );                    
-    }
+    // public function loadedSearch($observer)
+    // {
+    //     $o = $observer->getDataObject();
+    //     if(!$o){return;}
+    //     $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
+    //     $front->addDeferredAction('searchedproducts',
+    //         array('query'=>$o->getQueryText())
+    //     );                    
+    // }
     
     public function categoryViewForFiltering($observer)
     {
@@ -141,7 +141,7 @@ class Crowdstream_Analytics_Model_Observer
             return;
         }
         
-        $front      = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
+        $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
         $front->addDeferredAction('filteredproducts',
             array('params'=>$params)
         );                    
@@ -212,10 +212,10 @@ class Crowdstream_Analytics_Model_Observer
             return;
         }
 
-        $front      = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
+        $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();
         $front->addDeferredAction('subscribenewsletter',
             array('subscriber'=>$subscriber->getData())
-        );          
+        );
     }
     
     public function wishlistAddProduct($observer)
@@ -230,26 +230,26 @@ class Crowdstream_Analytics_Model_Observer
 
     }
 
-    public function viewedImageFrontendTrack($observer)
-    {
-        if(!Mage::helper('crowdstream_analytics')->isEnabled())
-        {
-            return;
-        }        
+    // public function viewedImageFrontendTrack($observer)
+    // {
+    //     if(!Mage::helper('crowdstream_analytics')->isEnabled())
+    //     {
+    //         return;
+    //     }        
         
-        $action = $observer->getAction();
-        if(!$action){ return; } 
+    //     $action = $observer->getAction();
+    //     if(!$action){ return; } 
         
-        $layout = Mage::getSingleton('core/layout');
+    //     $layout = Mage::getSingleton('core/layout');
         
-        $content = $layout->getBlock('content');
-        if(!$content) { return; }
+    //     $content = $layout->getBlock('content');
+    //     if(!$content) { return; }
         
-        $content->append(
-            $layout->createBlock('crowdstream_analytics/template')
-            ->setTemplate('crowdstream_analytics/image-frontend.phtml')
-        );
-    }
+    //     $content->append(
+    //         $layout->createBlock('crowdstream_analytics/template')
+    //         ->setTemplate('crowdstream_analytics/image-frontend.phtml')
+    //     );
+    // }
     
     public function orderPlaced($observer)
     {
@@ -262,62 +262,62 @@ class Crowdstream_Analytics_Model_Observer
         );      
     }
 
-    public function logBlockHtml($observer)
-    {
-        if($observer->getBlock()->getNameInLayout() != self::CONTAINER_BLOCKNAME)
-        {
-            return;
-        }
+    // public function logBlockHtml($observer)
+    // {
+    //     if($observer->getBlock()->getNameInLayout() != self::CONTAINER_BLOCKNAME)
+    //     {
+    //         return;
+    //     }
 
-        Mage::Log($observer->getTransport()->getHtml(), Zend_Log::INFO, 'segment.log');
-    }
+    //     Mage::Log($observer->getTransport()->getHtml(), Zend_Log::INFO, 'segment.log');
+    // }
     
-    public function addClickedShareJavascript($observer)
-    {
-        $action = $observer->getAction();
-        if(!$action){ return; }     
+    // public function addClickedShareJavascript($observer)
+    // {
+    //     $action = $observer->getAction();
+    //     if(!$action){ return; }     
         
-        if($action->getFullActionName() != 'catalog_product_view')
-        {
-            return;
-        }
+    //     if($action->getFullActionName() != 'catalog_product_view')
+    //     {
+    //         return;
+    //     }
 
-        $layout = Mage::getSingleton('core/layout');
+    //     $layout = Mage::getSingleton('core/layout');
 
-        $content = $layout->getBlock('content');
-        if(!$content)
-        {
-            return;
-        }
+    //     $content = $layout->getBlock('content');
+    //     if(!$content)
+    //     {
+    //         return;
+    //     }
         
-        $block = $layout->createBlock('crowdstream_analytics/template')
-        ->setTemplate('crowdstream_analytics/share-frontend.phtml');
+    //     $block = $layout->createBlock('crowdstream_analytics/template')
+    //         ->setTemplate('crowdstream_analytics/share-frontend.phtml');
         
-        $content->append($block);    
-    }
+    //     $content->append($block);    
+    // }
     
-    public function addClickedReviewTabJavascript($observer)
-    {
-        $action = $observer->getAction();
-        if(!$action){ return; }     
+    // public function addClickedReviewTabJavascript($observer)
+    // {
+    //     $action = $observer->getAction();
+    //     if(!$action){ return; }     
         
-        if($action->getFullActionName() != 'catalog_product_view')
-        {
-            return;
-        }
+    //     if($action->getFullActionName() != 'catalog_product_view')
+    //     {
+    //         return;
+    //     }
         
-        $layout = Mage::getSingleton('core/layout');
+    //     $layout = Mage::getSingleton('core/layout');
 
-        $content = $layout->getBlock('content');
-        if(!$content)
-        {
-            return;
-        }
-        $block = $layout->createBlock('crowdstream_analytics/template')
-        ->setTemplate('crowdstream_analytics/review-frontend.phtml');
+    //     $content = $layout->getBlock('content');
+    //     if(!$content)
+    //     {
+    //         return;
+    //     }
+    //     $block = $layout->createBlock('crowdstream_analytics/template')
+    //         ->setTemplate('crowdstream_analytics/review-frontend.phtml');
         
-        $content->append($block);
-    }
+    //     $content->append($block);
+    // }
     
     protected function _getCustomer()
     {

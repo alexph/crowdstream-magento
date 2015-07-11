@@ -2,10 +2,10 @@
 <script type="text/javascript">     
     if(cs_page.category_names)
     {
-        crowdstream.events.page();        
+        crowdstream.events.page();
     }
     else
     {
-        crowdstream.events.page(<?php echo $this->getPropertyAsJavascriptString('page_name');?>);
+        crowdstream.events.page('Home Page');
     }    
 </script>
