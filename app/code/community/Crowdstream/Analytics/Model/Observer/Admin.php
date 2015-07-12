@@ -24,8 +24,8 @@ class Crowdstream_Analytics_Model_Observer_Admin
         
         $json = new stdClass;
         $json->content = $layout->createBlock('adminhtml/template')
-        ->setTemplate('crowdstream_analytics/welcome.phtml')
-        ->toHtml();
+            ->setTemplate('crowdstream_analytics/welcome.phtml')
+            ->toHtml();
         
 //         $json = Mage::helper('core')->jsonEncode($json);
 //         $block = $layout->createBlock('adminhtml/template')

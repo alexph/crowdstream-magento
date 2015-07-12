@@ -60,22 +60,19 @@ class Crowdstream_Analytics_Model_Observer
         }        
         
         $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();        
-        $front->addAction('init');     
-        $front->addAction('page');               
+        $front->addAction('init');
+        $front->addAction('page');
     }
 
     public function loggedIn($observer)    
     {
-        $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
-        // $front->addDeferredAction('alias');
+        $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();
         $front->addDeferredAction('identity');
-        // $front->addDeferredAction('customerloggedin');
     }
 
     public function identify($observer)    
     {
-        $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();  
-        // $front->addDeferredAction('identity');
+        $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();
         $front->addAction('identity');
     }    
     
@@ -108,21 +105,21 @@ class Crowdstream_Analytics_Model_Observer
     public function customerRegistered($observer)
     {
         $customer = $observer->getCustomer();
-        $front      = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
+        $front    = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
         $front->addDeferredAction('customerregistered',
             array('customer_id'=>$customer->getEntityId())
         );            
     }
     
-    // public function loadedSearch($observer)
-    // {
-    //     $o = $observer->getDataObject();
-    //     if(!$o){return;}
-    //     $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
-    //     $front->addDeferredAction('searchedproducts',
-    //         array('query'=>$o->getQueryText())
-    //     );                    
-    // }
+    public function loadedSearch($observer)
+    {
+        $o = $observer->getDataObject();
+        if(!$o){return;}
+        $front = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
+        $front->addDeferredAction('searchedproducts',
+            array('query'=>$o->getQueryText())
+        );                    
+    }
     
     public function categoryViewForFiltering($observer)
     {
@@ -230,27 +227,6 @@ class Crowdstream_Analytics_Model_Observer
 
     }
 
-    // public function viewedImageFrontendTrack($observer)
-    // {
-    //     if(!Mage::helper('crowdstream_analytics')->isEnabled())
-    //     {
-    //         return;
-    //     }        
-        
-    //     $action = $observer->getAction();
-    //     if(!$action){ return; } 
-        
-    //     $layout = Mage::getSingleton('core/layout');
-        
-    //     $content = $layout->getBlock('content');
-    //     if(!$content) { return; }
-        
-    //     $content->append(
-    //         $layout->createBlock('crowdstream_analytics/template')
-    //         ->setTemplate('crowdstream_analytics/image-frontend.phtml')
-    //     );
-    // }
-    
     public function orderPlaced($observer)
     {
         $front      = Crowdstream_Analytics_Model_Front_Controller::getInstance();            
@@ -261,67 +237,10 @@ class Crowdstream_Analytics_Model_Observer
             ))
         );      
     }
-
-    // public function logBlockHtml($observer)
-    // {
-    //     if($observer->getBlock()->getNameInLayout() != self::CONTAINER_BLOCKNAME)
-    //     {
-    //         return;
-    //     }
-
-    //     Mage::Log($observer->getTransport()->getHtml(), Zend_Log::INFO, 'segment.log');
-    // }
-    
-    // public function addClickedShareJavascript($observer)
-    // {
-    //     $action = $observer->getAction();
-    //     if(!$action){ return; }     
-        
-    //     if($action->getFullActionName() != 'catalog_product_view')
-    //     {
-    //         return;
-    //     }
-
-    //     $layout = Mage::getSingleton('core/layout');
-
-    //     $content = $layout->getBlock('content');
-    //     if(!$content)
-    //     {
-    //         return;
-    //     }
-        
-    //     $block = $layout->createBlock('crowdstream_analytics/template')
-    //         ->setTemplate('crowdstream_analytics/share-frontend.phtml');
-        
-    //     $content->append($block);    
-    // }
-    
-    // public function addClickedReviewTabJavascript($observer)
-    // {
-    //     $action = $observer->getAction();
-    //     if(!$action){ return; }     
-        
-    //     if($action->getFullActionName() != 'catalog_product_view')
-    //     {
-    //         return;
-    //     }
-        
-    //     $layout = Mage::getSingleton('core/layout');
-
-    //     $content = $layout->getBlock('content');
-    //     if(!$content)
-    //     {
-    //         return;
-    //     }
-    //     $block = $layout->createBlock('crowdstream_analytics/template')
-    //         ->setTemplate('crowdstream_analytics/review-frontend.phtml');
-        
-    //     $content->append($block);
-    // }
     
     protected function _getCustomer()
     {
-        $customer       = Mage::getSingleton('customer/session')->getCustomer();            
+        $customer = Mage::getSingleton('customer/session')->getCustomer();            
         
         //pull entire customer, including eav attributes not initially populated
         $full_customer = Mage::getModel('customer/customer')->getCollection()

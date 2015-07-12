@@ -5,7 +5,7 @@ class Crowdstream_Analytics_Model_Controller_Viewedproduct extends Crowdstream_A
     {
         $params = $block->getParams();
         
-        $product   = Mage::helper('crowdstream_analytics')
+        $product = Mage::helper('crowdstream_analytics')
             ->getNormalizedProductInformation($params['id']);   
                 
         $block->setParams($product);
